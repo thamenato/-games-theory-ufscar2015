@@ -6,12 +6,16 @@ public class Waypoint : MonoBehaviour {
     public string waypointDescription;  // will be shown in interactionPanel
     public string sceneNameToGo;
     private GameObject interactionPanel;
+    private GameManager gm;
 
     void Start()
     {
         interactionPanel = GameObject.Find("InteractionPanel");
+        gm = GameObject.FindObjectOfType<GameManager>();
         if (interactionPanel == null)
             Debug.LogError("Waypoint : InteractionPanel not found. Maybe wrong name?");
+        if (gm == null)
+            Debug.LogError("Waypoint : Couldnt find GameManager.");
     }
 
     // Show waypointDescription on Canvas - InteractionPanel
@@ -57,6 +61,7 @@ public class Waypoint : MonoBehaviour {
         if(sceneNameToGo.Length != 0) // there is a scene to go to
             try
             {
+                gm.setLastLoadedScene(Application.loadedLevelName);
                 Application.LoadLevel(sceneNameToGo);
             }
             catch(System.Exception e)

@@ -21,11 +21,9 @@ public class StairsOpacity : MonoBehaviour {
         if(other.tag == "Player")
         {
             float opacity = (other.transform.position.x - endPoint)/(startPoint - endPoint);
-            if (opacity < 0)
-                opacity = 0;
-            if (opacity > 1)
-                opacity = 1;
-            sprite.color = new Color(255, 255, 255, opacity);
+            if (opacity < 0) opacity = 0;
+            if (opacity > 1) opacity = 1;
+            sprite.color = new Color(sprite.color.r,sprite.color.g, sprite.color.b, opacity);
         }
     }
 
