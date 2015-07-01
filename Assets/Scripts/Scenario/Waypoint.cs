@@ -14,15 +14,7 @@ public class Waypoint : MonoBehaviour {
             Debug.LogError("Waypoint : InteractionPanel not found. Maybe wrong name?");
     }
 
-    void Update()
-    {
-        // get action button - space or return
-        if(Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.Return))
-        {
-            changeScene();
-        }
-    }
-
+    // Show waypointDescription on Canvas - InteractionPanel
     void OnTriggerEnter2D(Collider2D other)
     {
         if(other.tag == "Player")
@@ -33,6 +25,23 @@ public class Waypoint : MonoBehaviour {
         }
     }
 
+    // Accepts input 'action button' to change scene
+    void OnTriggerStay2D(Collider2D other)
+    {
+        if(other.tag == "Player")
+        {
+            // get action button - space or return
+            if (Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.Return))
+            {
+                if (sceneNameToGo.Length != 0)
+                    changeScene();
+                else
+                    Debug.Log("Waypoint : sceneNameToGo not defined!");
+            }
+        }
+    }
+
+    // Hides waypointDescription on Canvas
     void OnTriggerExit2D(Collider2D other)
     {
         if(other.tag == "Player")
@@ -45,14 +54,15 @@ public class Waypoint : MonoBehaviour {
 
     void changeScene()
     {
-        try
-        {
-            Application.LoadLevel(sceneNameToGo);
-        }
-        catch(System.Exception e)
-        {
-            Debug.LogException(e);
-        }
+        if(sceneNameToGo.Length != 0) // there is a scene to go to
+            try
+            {
+                Application.LoadLevel(sceneNameToGo);
+            }
+            catch(System.Exception e)
+            {
+                Debug.LogException(e);
+            }
     }
 
 }
