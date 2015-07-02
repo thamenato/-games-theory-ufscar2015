@@ -15,6 +15,8 @@ public class Movement : MonoBehaviour {
 
     private bool faceRight = true;
     private Animator playerAnimator;
+    private bool canMove = true;
+
     void Start()
     {
         playerAnimator = GetComponent<Animator>();
@@ -23,7 +25,8 @@ public class Movement : MonoBehaviour {
     }
 
 	void Update () {
-        Move();
+        if(canMove)
+            Move();
     }
 
     void Move()
@@ -32,7 +35,7 @@ public class Movement : MonoBehaviour {
         playerAnimator.SetBool("walking", true);
         
         // going left
-        if (Input.GetKey(KeyCode.A))
+        if (Input.GetKey(KeyCode.A) || Input.GetAxis("Horizontal") < 0)
         {
             transform.Translate(new Vector3(- movementSpeed * Time.deltaTime, 0));
             if (faceRight)
@@ -45,7 +48,7 @@ public class Movement : MonoBehaviour {
         }
         
         // going right
-        else if (Input.GetKey(KeyCode.D))
+        else if (Input.GetKey(KeyCode.D) || Input.GetAxis("Horizontal") > 0)
         {
             transform.Translate(new Vector3(movementSpeed * Time.deltaTime, 0));
             if (!faceRight)
@@ -93,6 +96,16 @@ public class Movement : MonoBehaviour {
         //        this.transform.position.y - movementspeed * time.deltatime,
         //        z);
         //}
+    }
+
+    void pauseAnimation(bool condition)
+    {
+        if(condition)
+            playerAnimator.speed = 0;
+        else
+            playerAnimator.speed = 1;
+        // if pause = true, canMove = false
+        canMove = !condition;
     }
 
 }

@@ -18,4 +18,12 @@ public class ButtonSound : MonoBehaviour {
         AudioSource.PlayClipAtPoint(buttonSound, Vector3.one);
     }
 
+    public void playSoundPauseMenu()
+    {
+        // shitty solution to play sounds at the Pause Menu, but well.. it works!
+        Time.timeScale = 1;
+        AudioSource.PlayClipAtPoint(buttonSound, Vector3.one);
+        Time.timeScale = 0;
+    }
+
 }
