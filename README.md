@@ -1,11 +1,11 @@
-//todo: <name_to_be_decided>
+Unfinished
 =====================
 
-//todo : Quick description of the project / class and game
+Unfinished is a 2D platform horror game developed in Unity 5.1.0f3, where the player is a person haunted by a spirit that lives in the house. A portion of the plot and some events are inspired by other horror games like Ao Oni, Silent Hill P.T., The House, and by some of two-sentence horror stories selected in the "20 Terrifying Two-Sentence Horror Stories" post of 9gag. In the game, the player needs to keeps his sanity and make the right decisions in order to keep alive and finish the game.
 
 ### The Game
 
-//todo: detailed description of the game
+
 
 ### Configuration
 
