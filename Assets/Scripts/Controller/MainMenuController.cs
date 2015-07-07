@@ -20,5 +20,11 @@ public class MainMenuController : MonoBehaviour {
         about.SetActive(c);
     }
 
-
+    void Update()
+    {
+        if(Input.GetKey(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
+    }
 }
